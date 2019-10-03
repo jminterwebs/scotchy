@@ -1,0 +1,23 @@
+default: &default
+   adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+  username: <%= ENV.fetch('DB_USER') %>
+  password: <%= ENV.fetch('DB_PASSWORD') %>
+  port: <%= ENV.fetch('DB_PORT', 5432) %>
+  host: <%= ENV.fetch('DB_HOST', '127.0.0.1') %>
+
+development:
+  <<: *default
+  database: scotch-development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: scotchy-test
+
+production:
+  <<: *default
+  database: scotchy-production
